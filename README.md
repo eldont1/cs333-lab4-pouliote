@@ -47,6 +47,8 @@ You should see something like `v22.11.0` or higher. If you see "command not foun
 
 **Question 2:** what version do you have?
 
+- v24.22.0
+
 ## 3. Try Node by itself
 
 Type `node` and press Enter. The prompt changes to `>`. Now Node runs each line you type:
@@ -60,6 +62,8 @@ Type `node` and press Enter. The prompt changes to `>`. Now Node runs each line 
 Type `.exit` to leave.
 
 **Question 3:** `document` worked in the browser's Console. What happens here, and why do you think that is?
+
+- The 'document' object doesn't exist in the terminal, it's part of the website. When using node in a terminal, it's like a blank slate with nothing there, so we can't reference the document.
 
 ## 4. Your first Node program
 
@@ -91,6 +95,8 @@ node --watch index.js
 ```
 
 **Question 4:** What does the `--watch` flag do?
+
+- The watch flag restarts the node application when node detects a change in the watched file. So when I added another console.log message and saved, the current node instance was replaced with a fresh one, with the updated code.
 
 **TODO:** change the message and save. It runs again by itself. Press **Ctrl+C** to stop it.
 
@@ -129,6 +135,8 @@ Run it with `node index.js`. A new `message.txt` appears in your folder. Open it
 
 **Question 5:** what is the error code? (It's a word in capitals.)
 
+- The error is ENOENT, which stands for error no entry, meaning the file/directory could not be found.
+
 **TODO 2:** fix the crash with `try` / `catch`, the same as last Wednesday. Replace the last two lines with:
 
 ```js
@@ -143,6 +151,8 @@ try {
 Run it again: a friendly message instead of a crash.
 
 **Question 6:** How does try/catch in js work with await? Just describe the above example in your own words.
+
+- When the await runs, it's like making a promise. In the case of readFile("nope.txt"), the file doesn't exist, so the promise doesn't follow through. This is executed in the try block, then the catch block will catch this error (ENOENT).
 
 ## 7. You'll see older code too
 
@@ -172,8 +182,8 @@ There are two popular QR code packages. Look each one up on [npmjs.com](https://
 
 | | `qr-image` | `qrcode` |
 | --- | --- | --- |
-| Weekly downloads | | |
-| Last published (look on the right side of the page) | | |
+| Weekly downloads | 87,378 | 12,828,066 |
+| Last published (look on the right side of the page) | 10 years ago | 2 years ago |
 
 **Question 8:** which would you pick for a project you had to look after for years, and why? (We'll use `qrcode`.)
 
@@ -230,6 +240,8 @@ const url = await input({
 
 **TODO:** run it and type `sou.edu`. What happens? Then type `https://sou.edu`.
 
+- Because we're using URL.canParse(), the URL has to start with something like https:. This is good for a qr code, because our phones recognize the https: and know to open in a broswer.
+
 **Step D: name the file after the website.** Replace your `toFile` and `console.log` lines with:
 
 ```js
@@ -263,6 +275,8 @@ This program can't run on your `lampforall` website. (you answered why this is t
 **Commit** after each step that works, with a message that says what works (`Ask for a URL`, `Save the QR code`, ...).
 
 **Optional extra:** make an SVG instead of a PNG: change the file name to end in `.svg`. Why might an SVG be better for printing on a poster?
+
+- A poster would probably have a larger graphic for the QR code than a desktop screen would. png files can become less detailed when size is scaled up, while svg files will maintain their quality.
 
 ---
 
