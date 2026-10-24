@@ -4,9 +4,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Band Name Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <!-- this page runs on localhost, so load the navbar from lampforall; its links then point to the live labs -->
+  <script src="https://lampforall.cis251296.projects.jetstream-cloud.org/students/eldonstudent/nav.js" defer></script>
 </head>
 <body>
   <h1>Band Name Generator</h1>
+  <div class="lab-info">
+    <h2>About This Lab</h2>
+    <p>This page is served by a small Express server running in Node on my own computer.
+      When you press Generate, the form is sent to the server, which reads it with middleware
+      and sends back a band name made from your street and pet names.</p>
+  </div>
   <form action="/submit" method="POST">
     <label for="street">Street name</label>
     <input id="street" name="street" required>

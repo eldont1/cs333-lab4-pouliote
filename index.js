@@ -20,7 +20,7 @@ const url = await input({
 console.log("You typed:", url);
 
 
-// 2. Turn it into a QR code PNG with the qrcode package.
+// 2. Turn it into a QR code SVG with the qrcode package.
 
 const filename = new URL(url).hostname + ".svg";
 await QRCode.toFile(filename, url);

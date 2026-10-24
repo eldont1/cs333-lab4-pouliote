@@ -1,0 +1,148 @@
+/* colors match cs333-lab1-pouliote/styles.css and cs333-lab3-pouliote/style.css */
+:root {
+  --primary-color: #940b0b;
+  --secondary-color: #cec4c4;
+  --third-color: #242222;
+  --text-color: #000000;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  line-height: 1.5;
+  background-color: var(--primary-color);
+}
+
+/* lab navigation, same as the lab 1, 2 and 3 navbar */
+.navbar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  line-height: normal;  /* don't inherit body's 1.5, so the bar matches the other pages */
+  gap: 15px;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  border-radius: 50px;
+  background: var(--third-color);
+}
+
+.navbar a {
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-weight: 600;
+  color: var(--secondary-color);
+  text-decoration: none;
+  padding: 8px 18px;
+  border-radius: 50px;
+}
+
+.navbar a:hover {
+  background: var(--secondary-color);
+  color: var(--text-color);
+}
+
+h1 {
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 2.5rem;
+  background: var(--secondary-color);
+  max-width: 400px;
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 20px auto;
+  padding: 0 20px;
+  border-radius: 50px;
+  border: 5px double black;
+}
+
+h2 {
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: var(--secondary-color);
+  margin: 30px 0 10px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--secondary-color);
+}
+
+/* box explaining the lab, same as lab 1 and lab 3 */
+.lab-info {
+  margin: 20px 0;
+  padding: 15px 20px;
+  border-radius: 12px;
+  border: 3px solid var(--third-color);
+  background: var(--secondary-color);
+  color: var(--text-color);
+}
+
+/* overrides the page-wide h2 above (light text) so it reads on the gray box */
+.lab-info h2 {
+  color: var(--text-color);
+  margin: 0 0 10px;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.lab-info p {
+  margin: 0 0 10px;
+}
+
+.lab-info p:last-child {
+  margin-bottom: 0;
+}
+
+.lab-info a {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+/* band name form, styled like the lab 1 info box */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 15px 20px;
+  border-radius: 12px;
+  border: 3px solid var(--third-color);
+  background: var(--secondary-color);
+}
+
+label {
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-weight: 600;
+}
+
+input {
+  padding: 8px;
+  margin-bottom: 0.5rem;
+  border: 3px ridge rgb(207, 207, 207);
+  font-size: 1rem;
+}
+
+button {
+  align-self: flex-start;
+  padding: 10px 15px;
+  background-color: #000307;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* QR code on the lab 4 page */
+.qr {
+  display: block;
+  width: 250px;
+  max-width: 100%;
+  margin: 15px auto 0;
+  border: 3px solid var(--third-color);
+  border-radius: 12px;
+}

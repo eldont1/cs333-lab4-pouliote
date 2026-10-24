@@ -302,6 +302,9 @@ To run a file: `npm run dev1` (or `dev2`, `dev3`, `dev4`). That runs `node --wat
 10. Run `npm run dev1` and open `http://localhost:3000`. You see the form. Fill it in and press the button.
     **Question 9:** what does the page say?
 
+- The page says "Cannot POST /submit", as there is no submit page 
+for the form to submit to.
+
 11. Add a route for the form. Type this above `app.listen`:
     ```js
     app.post("/submit", function (req, res) {
@@ -311,11 +314,15 @@ To run a file: `npm run dev1` (or `dev2`, `dev3`, `dev4`). That runs `node --wat
     ```
     Submit the form again. **Question 10:** what does the server terminal print for `req.body`?
 
+- The terminal prints (undefined) for req.body
+
 12. Add this line under `const port = 3000;`:
     ```js
     app.use(express.urlencoded());
     ```
     Submit again. **Question 11:** what does the terminal print now? What did `express.urlencoded()` do?
+
+- The terminal prints the proper key-value pairs that were submitted in the form. The urlencoded() line decodes the form submission answers, which are encoded in a special way, with certain symbols (like in URLS, it's in the function name). Node doesn't give the incoming data as an object that we can use .body on automatically, so the .urlencoded() decodes this into an object we can use those functions on.
 
 13. **Test without the browser.** Install the **REST Client** extension in VS Code, open `Middleware/requests.http`, and click **Send Request** above the second request. The answer opens on the right.
     **TODO:** change `Biscuit` to another pet name in `requests.http` and send it again. Look at the server terminal.
@@ -332,9 +339,14 @@ To run a file: `npm run dev1` (or `dev2`, `dev3`, `dev4`). That runs `node --wat
     Reload `http://localhost:3000` a few times and look at the terminal.
     **Question 12:** a log line looks like `GET / 200 3.1 ms - 5`. What do you think each part means?
 
+- Log line: GET / 200 4.220 ms - 5
+- GET / is the request, 200 is the code, meaning "OK", 4.220 ms is the time it took for the server to respond to the request, 5 is the amount of bytes the request was (the text "hello"). Successive requests were similar, shorter in time due to one time setup that node does the first request, and 304 was the code instead of 200, meaning "nothing has changed since the last request".
+
 ## index3.js: write your own middleware
 
 15. Run `npm run dev3`. It crashes straight away. **Question 13:** what does the error say?
+
+- ReferenceError: logger is not defined
 
 16. Fix it: type this function above `app.use(logger);`:
     ```js
@@ -347,6 +359,8 @@ To run a file: `npm run dev1` (or `dev2`, `dev3`, `dev4`). That runs `node --wat
     Reload the page and look at the terminal.
 
 17. **TODO:** put `//` in front of `next();` and reload the page. **Question 14:** what happens in the browser? Why? Then take the `//` away.
+
+- The page tries to reload but it can't. Since next() can't pass on the request, the page stays stuck while it's unable to match the request to the next item.
 
 ## index4.js: the Band Name Generator
 
@@ -370,8 +384,12 @@ To run a file: `npm run dev1` (or `dev2`, `dev3`, `dev4`). That runs `node --wat
 
 20. **TODO:** type `<b>Maple</b>` as the street name. **Question 15:** what happens, and why is that the same problem as Week 3's `innerHTML`?
 
+- This allows code to be injected through the forms, which means somebody could run a script or gain access to something we don't want them to have.
+
 21. Now look at `solution4.js`. It fixes that with `escapeHtml`, and it moves the band-name step into its own middleware, `bandNameGenerator`, which only runs for `/submit`. Copy those two functions into your `index4.js` and change your route to match `solution4.js`.
     **Question 16:** what does `bandNameGenerator` do when a box is empty? Test it with the third request in `requests.http`.
+
+- The bandNameGenerator function sends a status message and then returns, so that the function never completes the band name without both fields. 
 
 **Commit** after each `indexN.js` works.
 
